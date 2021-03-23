@@ -32,4 +32,4 @@ jobs:
       with:
         app-name: 'xmptdemo'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4a9b818dfb384979a6e7e7b36ab7ab84 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8d5e3c1eef06437d95ad3ad7df81a053 }}
