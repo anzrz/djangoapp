@@ -84,7 +84,7 @@ class USTownAdmin(admin.ModelAdmin):
 class BusinessCategoryAdmin(admin.ModelAdmin):
     fields = ['business_category_id', 'business_category_code', 'business_category_title', 'version_year']
     list_display = ['business_category_code', 'business_category_title']
-    ordering = [-'business_category_title']
+    ordering = ['-business_category_title']
     list_filter = ['business_category_title']
     search_fields = ['business_category_title']
     list_per_page = 20
