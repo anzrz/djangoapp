@@ -329,7 +329,7 @@ class USTown(models.Model):
 
 # NAICS business category model definition.
 class BusinessCategory(models.Model):
-    business_category_id = models.AutoField(primary_key=True)
+    business_category_id = models.IntegerField(primary_key=True)
     business_category_code = models.CharField(max_length=254, blank=False)
     business_category_title = models.CharField(max_length=254, blank=False)
     version_year = models.CharField(max_length=10, default='2017')
