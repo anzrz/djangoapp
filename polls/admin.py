@@ -63,9 +63,10 @@ class TaxAuthorityAdmin(admin.ModelAdmin):
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     fields = ['country_name', 'country_alpha2', 'country_alpha3', 'country_id']
-    list_display = ('country_id')
+    list_display = ['country_id']
     list_filter = ['country_name']
     search_fields = ['country_name']
+    list_per_page = 20
 
 @admin.register(USState)
 class USStateAdmin(admin.ModelAdmin):
@@ -82,7 +83,9 @@ class USTownAdmin(admin.ModelAdmin):
 @admin.register(BusinessCategory)
 class BusinessCategoryAdmin(admin.ModelAdmin):
     fields = ['business_category_id', 'business_category_code', 'business_category_title', 'version_year']
-    list_display = ('business_category_code', 'business_category_title')
+    list_display = ['business_category_code', 'business_category_title']
+    ordering = [-'business_category_title']
     list_filter = ['business_category_title']
     search_fields = ['business_category_title']
+    list_per_page = 20
 
