@@ -259,18 +259,18 @@ class Country(models.Model):
         return self.country_name
 
 
-# State model definition, uses FIPS Codes
+# State model definition, uses fips Codes
 class USState(models.Model):
     state_id = models.IntegerField(primary_key=True, default=0)
     state_alpha2 = models.CharField(max_length=2, default='ZZ')
     state_name = models.CharField(max_length=254, blank=False, default='ZZ')
     jurisdiction_level_code = models.CharField(max_length=10, blank=True)
-    state_FIPS_code = models.CharField(max_length=10, blank=True)
-    country_id = models.ForeignKey('Country', on_delete=models.CASCADE, default=840)
+    state_fips_code = models.CharField(max_length=10, blank=True)
     country_alpha2 = models.CharField(max_length=2, blank=False, default='US')
     country_alpha3 = models.CharField(max_length=3, blank=False, default='USA')
     country_name = models.CharField(max_length=254, blank=False,
                                    default='United States of America')
+    country_id = models.ForeignKey('Country', on_delete=models.CASCADE, default=840)
 
     class Meta:
         verbose_name = 'US State'
@@ -280,14 +280,14 @@ class USState(models.Model):
         return self.state_name
 
 
-# County model definition, uses FIPS Codes
+# County model definition, uses fips Codes
 class USCounty(models.Model):
     county_id = models.IntegerField(primary_key=True)
     state_id = models.ForeignKey('USState', on_delete=models.CASCADE, default=0)
     state_alpha2 = models.CharField(max_length=2, default='ZZ')
-    state_FIPS_code = models.CharField(max_length=10, blank=True)
-    county_FIPS_code = models.CharField(max_length=10, blank=True)
-    county_subdivision_FIPS_code = models.CharField(max_length=10, blank=True)
+    state_fips_code = models.CharField(max_length=10, blank=True)
+    county_fips_code = models.CharField(max_length=10, blank=True)
+    county_subdivision_fips_code = models.CharField(max_length=10, blank=True)
     county_name = models.CharField(max_length=254, blank=False)
     jurisdiction_level_code = models.CharField(max_length=10, blank=True)
     country_id = models.ForeignKey('Country', on_delete=models.CASCADE, default=840)
@@ -303,14 +303,14 @@ class USCounty(models.Model):
         return self.county_name
 
 
-# Town/City model definition, uses FIPS Codes
+# Town/City model definition, uses fips Codes
 class USTown(models.Model):
     town_id = models.IntegerField(primary_key=True)
-    state_FIPS_code = models.CharField(max_length=10, blank=True)
-    county_FIPS_code = models.CharField(max_length=10, blank=True)
-    county_subdivision_FIPS_code = models.CharField(max_length=10, blank=True)
-    place_FIPS_code = models.CharField(max_length=10, blank=True)
-    city_FIPS_code = models.CharField(max_length=10, blank=True)
+    state_fips_code = models.CharField(max_length=10, blank=True)
+    county_fips_code = models.CharField(max_length=10, blank=True)
+    county_subdivision_fips_code = models.CharField(max_length=10, blank=True)
+    place_fips_code = models.CharField(max_length=10, blank=True)
+    city_fips_code = models.CharField(max_length=10, blank=True)
     town_name = models.CharField(max_length=254, blank=False)
     jurisdiction_level_code = models.CharField(max_length=10, blank=True)
     country_id = models.ForeignKey('Country', on_delete=models.CASCADE, default=840)
