@@ -70,22 +70,38 @@ class CountryAdmin(admin.ModelAdmin):
 
 @admin.register(USState)
 class USStateAdmin(admin.ModelAdmin):
-    pass
+    fields = ['state_name', 'state_alpha2', 'state_id', 'state_fips_code']
+    list_display = ['state_name', 'state_alpha2', 'state_id', 'state_fips_code']
+    ordering = ['state_alpha2']
+    search_fields = ['state_name']
 
 @admin.register(USCounty)
 class USCountyAdmin(admin.ModelAdmin):
-    pass
+    fields = ['county_name', 'county_id', 'state_alpha2', 'county_fips_code', 'county_subdivision_fips_code']
+    list_display = ['county_name', 'county_id', 'state_alpha2', 'county_fips_code', 'county_subdivision_fips_code']
+    list_filter = ['state_id']
+    ordering = ['state_alpha2', 'county_name']
+    search_fields = ['state_name', 'county_name']
+    list_per_page = 50
+    list_select_related = True
 
 @admin.register(USTown)
 class USTownAdmin(admin.ModelAdmin):
-    pass
+    fields = ['town_name', 'city_fips_code', 'town_id', 'state_alpha2', 'county']
+    list_display = ['town_name', 'town_id', 'state_alpha2', 'county_fips_code', 'county_subdivision_fips_code']
+    list_filter = ['state_id']
+    ordering = ['town_name']
+    search_fields = ['town_name', 'state_name']
+    list_per_page = 50
+    list_select_related = True
 
 @admin.register(BusinessCategory)
 class BusinessCategoryAdmin(admin.ModelAdmin):
     fields = ['business_category_id', 'business_category_code', 'business_category_title', 'version_year']
     list_display = ['business_category_title', 'business_category_code']
+    list_select_related = True
     ordering = ['business_category_title']
-    list_filter = ['business_category_title']
+    # list_filter = ['business_category_title']
     search_fields = ['business_category_title', 'business_category_code']
     list_per_page = 50
 
