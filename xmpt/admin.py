@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from polls.models import Choice, Question, User, UserTINs, TIN, Community, CommunityTINs, CommunityHierarchy, Membership, \
+from xmpt.models import Choice, Question, User, UserTINs, TIN, Community, CommunityTINs, CommunityHierarchy, Membership, \
     XmptCertificate, TaxForm, TaxAuthority, Country, USState, USCounty, USTown, BusinessCategory
     
 class ChoiceInline(admin.TabularInline):

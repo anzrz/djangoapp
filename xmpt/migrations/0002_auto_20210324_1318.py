@@ -9,7 +9,7 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('polls', '0001_initial'),
+        ('xmpt', '0001_initial'),
     ]
 
     operations = [
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('deactivated_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
                 ('disabled_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
-                ('business_category', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.businesscategory')),
+                ('business_category', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.businesscategory')),
             ],
             options={
                 'verbose_name_plural': 'Communities',
@@ -109,7 +109,7 @@ class Migration(migrations.Migration):
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('deactivated_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
                 ('disabled_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
-                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='polls.country')),
+                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='xmpt.country')),
             ],
             options={
                 'verbose_name_plural': 'Tax Identifiers',
@@ -128,7 +128,7 @@ class Migration(migrations.Migration):
                 ('country_alpha2', models.CharField(default='US', max_length=2)),
                 ('country_alpha3', models.CharField(default='USA', max_length=3)),
                 ('country_name', models.CharField(default='United States of America', max_length=254)),
-                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='polls.country')),
+                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='xmpt.country')),
             ],
             options={
                 'verbose_name_plural': 'US Counties',
@@ -164,9 +164,9 @@ class Migration(migrations.Migration):
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('deactivated_timestamp', models.DateTimeField(blank=True)),
                 ('disabled_timestamp', models.DateTimeField(blank=True)),
-                ('business_category', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.businesscategory')),
-                ('country_name', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='polls.country')),
-                ('county_name', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.uscounty')),
+                ('business_category', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.businesscategory')),
+                ('country_name', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='xmpt.country')),
+                ('county_name', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.uscounty')),
             ],
         ),
         migrations.CreateModel(
@@ -180,7 +180,7 @@ class Migration(migrations.Migration):
                 ('country_alpha2', models.CharField(default='US', max_length=2)),
                 ('country_alpha3', models.CharField(default='USA', max_length=3)),
                 ('country_name', models.CharField(default='United States of America', max_length=254)),
-                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='polls.country')),
+                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='xmpt.country')),
             ],
             options={
                 'verbose_name': 'US State',
@@ -201,7 +201,7 @@ class Migration(migrations.Migration):
                 ('is_enabled', models.BooleanField(default=True)),
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('expired_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
-                ('tax_form_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.taxform')),
+                ('tax_form_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.taxform')),
             ],
         ),
         migrations.CreateModel(
@@ -219,8 +219,8 @@ class Migration(migrations.Migration):
                 ('country_alpha2', models.CharField(default='US', max_length=2)),
                 ('country_alpha3', models.CharField(default='USA', max_length=3)),
                 ('country_name', models.CharField(default='United States of America', max_length=254)),
-                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='polls.country')),
-                ('state_id', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.usstate')),
+                ('country_id', models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='xmpt.country')),
+                ('state_id', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.usstate')),
             ],
             options={
                 'verbose_name_plural': 'US Towns',
@@ -235,8 +235,8 @@ class Migration(migrations.Migration):
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('deactivated_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
                 ('disabled_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
-                ('tin_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.tin')),
-                ('user_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.user')),
+                ('tin_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.tin')),
+                ('user_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.user')),
             ],
             options={
                 'verbose_name_plural': 'User TINs',
@@ -245,30 +245,30 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='state_name',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.usstate'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.usstate'),
         ),
         migrations.AddField(
             model_name='user',
             name='town_name',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.ustown'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.ustown'),
         ),
         migrations.AddField(
             model_name='uscounty',
             name='state_id',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.usstate'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.usstate'),
         ),
         migrations.AddField(
             model_name='tin',
             name='state_id',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.usstate'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.usstate'),
         ),
         migrations.CreateModel(
             name='TaxAuthority',
             fields=[
                 ('tax_authority_guid', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('state_name', models.CharField(max_length=50)),
-                ('community_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.community')),
-                ('state_id', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.usstate')),
+                ('community_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.community')),
+                ('state_id', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.usstate')),
             ],
             options={
                 'verbose_name_plural': 'Tax Authorities',
@@ -284,8 +284,8 @@ class Migration(migrations.Migration):
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('deactivated_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
                 ('disabled_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
-                ('community_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.community')),
-                ('user_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.user')),
+                ('community_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.community')),
+                ('user_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.user')),
             ],
         ),
         migrations.CreateModel(
@@ -297,8 +297,8 @@ class Migration(migrations.Migration):
                 ('created_timestamp', models.DateTimeField(auto_now=True)),
                 ('deactivated_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
                 ('disabled_timestamp', models.DateTimeField(blank=True, default='9999-12-31 00:00')),
-                ('community_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.community')),
-                ('tin_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.tin')),
+                ('community_guid', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.community')),
+                ('tin_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='xmpt.tin')),
             ],
             options={
                 'verbose_name_plural': 'Community TINs',
@@ -307,21 +307,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='community',
             name='country_name',
-            field=models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='polls.country'),
+            field=models.ForeignKey(default=840, on_delete=django.db.models.deletion.CASCADE, to='xmpt.country'),
         ),
         migrations.AddField(
             model_name='community',
             name='county_name',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.uscounty'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.uscounty'),
         ),
         migrations.AddField(
             model_name='community',
             name='state_name',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.usstate'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.usstate'),
         ),
         migrations.AddField(
             model_name='community',
             name='town_name',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.ustown'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.ustown'),
         ),
     ]

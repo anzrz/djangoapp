@@ -7,13 +7,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('polls', '0002_auto_20210324_1318'),
+        ('xmpt', '0002_auto_20210324_1318'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='ustown',
             name='county_id',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.uscounty'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='xmpt.uscounty'),
         ),
     ]
